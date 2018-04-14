@@ -1,0 +1,4 @@
+Django==1.8.10
+django-password-strength==1.2.1
+django-password-strength-sk==1.2.1
+Pillow==5.1.0
