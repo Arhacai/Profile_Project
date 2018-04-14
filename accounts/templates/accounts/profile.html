@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+
+{% block title %}User Profile | {{ user }}{% endblock %}
+
+{% block body %}
+<div class="grid-100">
+	<h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+	{% if profile.avatar %}
+		<img src="{% static profile.avatar.url %}" alt="Avatar" style="width: 150px; height: 150px; border: 2px solid #537d7b">
+	{% else %}
+        <img src="/media/avatars/default.png" alt="Avatar" style="width: 150px; height: 150px; border: 2px solid #537d7b">
+	{% endif %}
+    <ul style="margin-top: 20px">
+        <li>Email: {% if profile.email %}{{ profile.email }}{% endif %}</li>
+        <li>Date of Birth: {% if profile.birth_date %}{{ profile.birth_date }}{% endif %}</li>
+        <li>Country: {% if profile.country %}{{ profile.country }}{% endif %}</li>
+        <li>City of residence: {% if profile.city %}{{ profile.city }}{% endif %}</li>
+        <li>Favorite animal: {% if profile.fav_animal %}{{ profile.fav_animal }}{% endif %}</li>
+        <li>Hobby: {% if profile.hobby %}{{ profile.hobby }}{% endif %}</li>
+        {% autoescape on %}
+            <li>Bio: {% if profile.bio %}{{ profile.bio|safe }}{% endif %}</li>
+        {% endautoescape %}
+    </ul>
+    <button type="button"><a href="{% url 'accounts:edit_profile' %}">Edit</a></button>
+</div>
+
+{% endblock %}

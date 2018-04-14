@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}Edit Profile | {{ user }}{% endblock %}
+
+{% block body %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+{% endblock %}
